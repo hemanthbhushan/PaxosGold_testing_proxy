@@ -39,5 +39,13 @@
   "directories": {
     "test": "test"
   },
-  "keywords": []
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hemanthbhushan/PaxosGold_testing_proxy.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hemanthbhushan/PaxosGold_testing_proxy/issues"
+  },
+  "homepage": "https://github.com/hemanthbhushan/PaxosGold_testing_proxy#readme"
 }
