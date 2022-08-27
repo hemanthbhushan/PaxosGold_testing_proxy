@@ -264,4 +264,8 @@ it("check setFeeRate(uint256 _newFeeRate)",async()=>{
 it("checking the require condition for setFeeRate(uint256 _newFeeRate)",async()=>{
   expect(impliProxy.setFeeRate(1000001)).to.be.revertedWith("cannot set fee rate above 100%");
 })
+//-----checkin the delegatecallTransfer----
+
+
+
 })
