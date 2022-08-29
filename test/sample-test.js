@@ -11,7 +11,7 @@ describe("check",()=>{
  beforeEach(async ()=>{
   [owner,signer1,signer2,admin] = await ethers.getSigners();
 
-  const Impli = await ethers.getContractFactory("PAXGImplementation",owner.address);
+  const Impli = await ethers.getContractFactory("GLRImplementation",owner.address);
 
   const Proxy = await ethers.getContractFactory("AdminUpgradeabilityProxy",admin.address);
 
@@ -35,8 +35,8 @@ describe("check",()=>{
    expect(await impliProxy.feeRecipient()).to.equal(owner.address);
     expect(owner1).to.equal(owner.address);
 
-   expect(name).to.equal("Paxos Gold");
-   expect(synbol).to.equal("PAXG")
+   expect(name).to.equal("Golar");
+   expect(synbol).to.equal("GLR");
  })
 //  ----------checking for the transfer(address _to, uint256 _value)
 
@@ -51,7 +51,7 @@ describe("check",()=>{
 })
 it("checking the transfer function when paused ",async()=>{
   
-  // await paxg.pause();
+  // await glr.pause();
   //initiall when the contract deployed it will be in a pause state 
   expect(impliProxy.transfer(signer1.address,10)).to.be.revertedWith("whenNotPaused");
 
@@ -146,20 +146,20 @@ it("checking the claimOwnership for require condition",async()=>{
 expect(impliProxy.claimOwnership()).to.be.revertedWith("onlyProposedOwner");
 })
 
-//----checking for  reclaimpaxgProxy()
+//----checking for  reclaimGLRProxy()
 //the owner claims all the balance stored in the contract address to the owner address
-it("testing the reclaimPAXG",async()=>{
+it("testing the reclaimGLR",async()=>{
 
 await impliProxy.increaseSupply(100);
 
 await impliProxy.transfer(impliProxy.address,10);
 expect(await impliProxy.balanceOf(impliProxy.address)).to.equal(10);
 
-await impliProxy.reclaimPAXG();
+await impliProxy.reclaimGLR();
 expect(await impliProxy.balanceOf(impliProxy.address)).to.equal(0);
 })
-it("checking the reclaimPAXG with require condition",async()=>{
-expect(impliProxy.connect(signer1).reclaimPAXG()).to.be.revertedWith("onlyOwner")
+it("checking the reclaimGLR with require condition",async()=>{
+expect(impliProxy.connect(signer1).reclaimGLR()).to.be.revertedWith("onlyOwner")
 })
 //---checking setAssetProtectionRole(address _newAssetProtectionRole);
 //this function is used in the freez function if the account found suspectable
@@ -264,4 +264,5 @@ it("check setFeeRate(uint256 _newFeeRate)",async()=>{
 it("checking the require condition for setFeeRate(uint256 _newFeeRate)",async()=>{
   expect(impliProxy.setFeeRate(1000001)).to.be.revertedWith("cannot set fee rate above 100%");
 })
+//-----checkin the delegatecallTransfer----
 })
