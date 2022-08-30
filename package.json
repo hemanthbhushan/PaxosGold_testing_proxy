@@ -34,7 +34,9 @@
     "@openzeppelin/contracts": "^4.7.0",
     "@pancakeswap/pancake-swap-lib": "github:pancakeswap/pancake-swap-lib",
     "@uniswap/v2-core": "^1.0.1",
-    "eth-permit": "^0.2.1"
+    "eip-712": "^1.0.0",
+    "eth-permit": "^0.2.1",
+    "eth-sig-util": "^3.0.1"
   },
   "directories": {
     "test": "test"
