@@ -43,7 +43,7 @@ describe("check",()=>{
  it("checking the transfer function",async ()=>{
   await proxy.increaseSupply(100);
   expect(await proxy.balanceOf(owner.address)).to.equal(100);
-  //initiall when the contract deployed it will be in a pause state only owner can upPause it by using the unpause function
+ 
  
   await proxy.transfer(signer1.address,10);
   expect(await proxy.balanceOf(owner.address)).to.equal(90);
@@ -51,8 +51,8 @@ describe("check",()=>{
 })
 it("checking the transfer function when paused ",async()=>{
   
-  // await paxg.pause();
-  //initiall when the contract deployed it will be in a pause state 
+  await proxy.pause();
+  
   expect(proxy.transfer(signer1.address,10)).to.be.revertedWith("whenNotPaused");
 
 })
